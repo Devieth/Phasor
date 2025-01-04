@@ -1,5 +1,5 @@
 #include "Damage.h"
-#include "../../../Scripts/script-events.h"
+#include "../../../ScriptingEvents.h"
 #include "../tags.h"
 #include "../../Globals.h"
 #include "Objects.h"
@@ -9,32 +9,21 @@
 
 namespace halo {
 
-	damage_script_options::damage_script_options(const halo::s_damage_info* dmg,
-		halo::ident receiver)
-		: receiver(receiver), causer(dmg->causer), causer_player(dmg->player_causer),
-		tag(dmg->tag_id), flags(dmg->flags), modifier(dmg->modifier1)
-	{
-	}
-
-	void damage_script_options::copyInto(s_damage_info& dmg, ident& receiver) const
-	{
-		dmg.causer = causer;
-		dmg.player_causer = causer_player;
-		dmg.flags = flags;
-		dmg.tag_id = tag;
-		dmg.modifier1 = modifier;
-		receiver = this->receiver;
-	}
-
 	// Called when an object's damage is being looked up
 	bool __stdcall OnDamageLookup(s_damage_info* dmg, ident* receiver)
 	{
 		s_tag_entry* tag = LookupTag(dmg->tag_id);
-		damage_script_options opts(dmg, *receiver);
+		damage_script_options opts;
 		bool allow = scripting::events::OnDamageLookup(dmg, tag->metaData, *receiver, opts);
 
 		if (allow) {
-			opts.copyInto(*dmg, *receiver);
+			dmg->causer = opts.causer;
+			dmg->player_causer = opts.causer_player;
+			dmg->flags = opts.flags;
+			dmg->tag_id = opts.tag;
+			dmg->modifier1 = opts.modifier;
+			*receiver = opts.receiver;
+
 		}
 		return allow;
 	}

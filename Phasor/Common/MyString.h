@@ -4,7 +4,6 @@
 #include <vector>
 #include <stdarg.h>
 
-// todo: cstr versions
 std::string NarrowString(const std::wstring& wide);
 std::wstring WidenString(const std::string& narrow);
 // Remove all trailing \n characters from the input string.
@@ -44,22 +43,19 @@ bool StringToNumber(const std::string& str, T& out)
 // Tokenization functions
 // -----------------------------------------------------------------------
 
-template <class T>
-const T ArgsSearchString();
-template <> const std::string ArgsSearchString<std::string>();
-template <> const std::wstring ArgsSearchString<std::wstring>();
-
 // Get the substring ending at the next occurrence of c.
 // start is the position (inclusive) where to start searching from.
 // end is the position after the next occurrence, or npos if none.
 template <class T, class _Tc>
-T GetStringEndingAtNext(const T& input, _Tc c, size_t start, size_t& end)
-{
+T GetStringEndingAtNext(const T& input, _Tc c, size_t start, size_t& end) {
 	size_t found = input.find_first_of(c, start);
 	T out = input.substr(start, found - start);
 	end = found == input.npos ? input.npos : found + 1;
 	return out;
 }
+template <class T>
+const T ArgsSearchString();
+
 
 // Tokenize a string into its constituent arguments, an argument
 // ends at a space unless within ' or " in which case it ends at the

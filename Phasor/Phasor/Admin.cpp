@@ -4,9 +4,10 @@
 #include "../Common/FileIO.h"
 #include "Commands.h"
 #include "Halo/Game/Game.h"
-#include <map>
 #include <set>
+#include <string>
 #include <vector>
+#include <map>
 
 namespace Admin
 {
@@ -16,64 +17,75 @@ namespace Admin
 
 	bool isChallengeEnabled() { return challenge_admins; }
 
-	namespace access
-	{
+	namespace access {
+
 		static const std::string kAllAccess = "-1";
-		class s_access_level
-		{
-			std::set<const std::string> commands;
-			int level;
-			bool all_access;
+
+		class AccessLevel {
 		public:
-			s_access_level(int level, const std::vector<std::string>& commands)
-				: level(level), all_access(false)
-			{
-				for (size_t x = 0; x < commands.size(); x++) {
-					const std::string& command = commands[x];
-					if (command == kAllAccess) all_access = true;
-					else this->commands.insert(command);
+			AccessLevel(int level, const std::vector<std::string>& commands)
+				: level_(level), all_access_(false) {
+				for (const auto& command : commands) {
+					if (command == kAllAccess) {
+						all_access_ = true;
+					}
+					else {
+						commands_.insert(command);
+					}
 				}
 			}
 
 			bool is_allowed(const std::string& command) const {
-				return all_access || commands.find(command) != commands.end();
+				return all_access_ || commands_.count(command) > 0;
 			}
 
-			const std::set<const std::string>& 
-				getCommands() { return commands; }
+			const std::set<std::string>& get_commands() const {
+				return commands_;
+			}
 
-			bool allAccess() const { return all_access; }
+			bool has_all_access() const { return all_access_; }
 
-			int get_level() const { return level; }
+			int get_level() const { return level_; }
+
+		private:
+			std::set<std::string> commands_;
+			int level_;
+			bool all_access_;
 		};
 
-		typedef std::map<int, s_access_level> access_t;
-		typedef std::pair<int, s_access_level> pair_t;
-		access_t accessList;
+		using AccessMap = std::map<int, AccessLevel>;
+		using AccessPair = std::pair<int, AccessLevel>;
 
-		void add(const s_access_level& access) {
-			accessList.insert(pair_t(access.get_level(), access));
+		AccessMap access_list;
+
+		void add(const AccessLevel& access) {
+			access_list.insert(AccessPair(access.get_level(), access));
 		}
 
-		void clear() { accessList.clear(); }
+		void clear() { access_list.clear(); }
 
-		bool find(int level, s_access_level** out) {
-			auto access = accessList.find(level);
-			if (access == accessList.end()) return false;
-			if (out) *out = &access->second;
-			return true;	
+		bool find(int level, AccessLevel** out) {
+			auto it = access_list.find(level);
+			if (it == access_list.end()) {
+				return false;
+			}
+			if (out) {
+				*out = &it->second;
+			}
+			return true;
 		}
+
 	}
 
 	namespace admin
 	{
 		struct s_admin
 		{
-			const access::s_access_level& accessLevel;
+			const access::AccessLevel& accessLevel;
 			std::string name, hash;
 
 			s_admin(const std::string& name, const std::string& hash,
-				const access::s_access_level& accessLevel)
+				const access::AccessLevel& accessLevel)
 				: name(name), hash(hash), accessLevel(accessLevel)
 			{
 			}
@@ -126,7 +138,7 @@ namespace Admin
 	//
 	result_t add(const std::string& hash, const std::string& authname, int level)
 	{
-		access::s_access_level* accessLevel = 0;
+		access::AccessLevel* accessLevel = 0;
 
 		if (admin::find_admin_by_hash(hash, NULL)) return E_HASH_INUSE;
 		if (admin::find_admin_by_name(authname, NULL)) return E_NAME_INUSE;		
@@ -188,7 +200,7 @@ namespace Admin
 				std::vector<std::string> tokens = 
 					Tokenize<std::string>(dataBuffer, ", ");
 
-				access::s_access_level accessLevel(level, tokens);
+				access::AccessLevel accessLevel(level, tokens);
 				access::add(accessLevel);
 
 				processedCount += strlen(outBuffer + processedCount) + 1;			
@@ -392,11 +404,11 @@ namespace Admin
 			return e_command_result::kProcessed;
 		}
 
-		access::s_access_level* lvl = 0;
+		access::AccessLevel* lvl = 0;
 		if (find(level, &lvl)) {
-			auto commands = lvl->getCommands();
+			auto commands = lvl->get_commands();
 
-			if (!lvl->allAccess())	{
+			if (!lvl->has_all_access())	{
 				out << "You can use the following commands:" << endl;
 				int i = 0;
 				for (auto itr = commands.begin(); itr != commands.end(); ++itr, i++) {

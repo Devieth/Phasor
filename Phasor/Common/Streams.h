@@ -202,7 +202,7 @@ private:
 // ignores all input
 class SinkStream : public COutStream
 {
-	virtual bool Write(const std::wstring&)
+	virtual bool Write(const std::wstring& str)
 	{
 		return true;
 	}

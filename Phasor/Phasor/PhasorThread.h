@@ -39,10 +39,10 @@ public:
 	bool ready(DWORD dwCurTicks) const;
 	
 	// Event is invoked in the aux thread
-	virtual void OnEventAux(PhasorThread&) {};
+	virtual void OnEventAux(PhasorThread& thread) {};
 
 	// Event is invoked in the main thread
-	virtual void OnEventMain(PhasorThread&) {};
+	virtual void OnEventMain(PhasorThread& thread) {};
 };
 
 // This class implements Phasor's worker (auxillary) thread.

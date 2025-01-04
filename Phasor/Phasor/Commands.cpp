@@ -1,7 +1,7 @@
 #include "Commands.h"
 #include "../Common/Streams.h"
 #include "../Common/MyString.h"
-
+#include "../ScriptingEvents.h"
 #include "Logging.h"
 #include "Halo/Server/Server.h"
 #include "Halo/Game/Game.h"
@@ -11,7 +11,7 @@
 #include "Halo/Server/misc_cmds.h"
 #include "Halo/AFKDetection.h"
 #include "Halo/Alias.h"
-#include "../Scripts/script-events.h"
+#include "../Scripting.h"
 #include "LogHandler.h"
 #include "Admin.h"
 #include <map>
@@ -37,7 +37,6 @@ namespace commands
 		cmd["sv_mapcycle"]			= &server::maploader::sv_mapcycle;
 		cmd["sv_map"]				= &server::maploader::sv_map;
 		cmd["sv_end_game"]			= &server::maploader::sv_end_game;
-       // cmd["sv_refresh_maps"] = &server::maploader::sv_refresh_maps;
 
 		cmd["sv_mapvote"]			= &server::mapvote::sv_mapvote;
 		cmd["sv_mapvote_size"]		= &server::mapvote::sv_mapvote_size;

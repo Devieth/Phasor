@@ -1,0 +1,300 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Gigabyte\\Halo\\phasor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\HaloStreams.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\HaloStreams.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\HaloStreams.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\HaloStreams.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Addresses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\Addresses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Addresses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\Addresses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Admin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Admin.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\MyString.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Common\\MyString.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\MyString.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Common\\MyString.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Game\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\Game\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Server\\Gametypes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\Server\\Gametypes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Server\\MapVote.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Phasor\\Halo\\Server\\MapVote.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\FileIO.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Common\\FileIO.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\Common.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F70F475A-E558-41C7-BAA4-8E2F6389ED68}|Phasor\\PhasorCE.vcxproj|solutionrelative:Phasor\\Common\\Common.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HaloStreams.h",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\HaloStreams.h",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\HaloStreams.h",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\HaloStreams.h",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\HaloStreams.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-04T18:25:05.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Globals.h",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Globals.h",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Globals.h",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Globals.h",
+              "RelativeToolTip": "Phasor\\Phasor\\Globals.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-04T18:25:01.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HaloStreams.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\HaloStreams.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\HaloStreams.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\HaloStreams.cpp",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\HaloStreams.cpp",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA8AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:23:39.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Addresses.h",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Addresses.h",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\Addresses.h",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Addresses.h",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\Addresses.h",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAswFkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-04T18:23:36.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MapVote.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Server\\MapVote.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\Server\\MapVote.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Server\\MapVote.cpp",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\Server\\MapVote.cpp",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAswOgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:22:17.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Manager.h",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Manager.h",
+              "RelativeDocumentMoniker": "Phasor\\Manager.h",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Manager.h",
+              "RelativeToolTip": "Phasor\\Manager.h",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAswMgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-04T18:22:09.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Manager.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Manager.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Manager.cpp",
+              "RelativeToolTip": "Phasor\\Manager.cpp",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAswLEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:21:56.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Gametypes.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Server\\Gametypes.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\Server\\Gametypes.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Server\\Gametypes.cpp",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\Server\\Gametypes.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:21:55.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Game\\Game.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\Game\\Game.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Game\\Game.cpp",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\Game\\Game.cpp",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAswGEAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:21:53.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FileIO.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\FileIO.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Common\\FileIO.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\FileIO.cpp",
+              "RelativeToolTip": "Phasor\\Common\\FileIO.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAABsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:21:49.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Common.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\Common.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Common\\Common.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\Common.cpp",
+              "RelativeToolTip": "Phasor\\Common\\Common.cpp",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAAAPkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:21:48.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Addresses.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Addresses.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Halo\\Addresses.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Halo\\Addresses.cpp",
+              "RelativeToolTip": "Phasor\\Phasor\\Halo\\Addresses.cpp",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAswEkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:19:12.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\main.cpp",
+              "RelativeDocumentMoniker": "Phasor\\main.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\main.cpp",
+              "RelativeToolTip": "Phasor\\main.cpp",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:15:40.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MyString.h",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\MyString.h",
+              "RelativeDocumentMoniker": "Phasor\\Common\\MyString.h",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\MyString.h",
+              "RelativeToolTip": "Phasor\\Common\\MyString.h",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-04T18:04:16.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MyString.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\MyString.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Common\\MyString.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Common\\MyString.cpp",
+              "RelativeToolTip": "Phasor\\Common\\MyString.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T18:04:15.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Admin.cpp",
+              "DocumentMoniker": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Admin.cpp",
+              "RelativeDocumentMoniker": "Phasor\\Phasor\\Admin.cpp",
+              "ToolTip": "C:\\Users\\Gigabyte\\Halo\\phasor\\Phasor\\Phasor\\Admin.cpp",
+              "RelativeToolTip": "Phasor\\Phasor\\Admin.cpp",
+              "ViewState": "AgIAABEBAAAAAAAAAAAswCoBAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T17:52:42.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

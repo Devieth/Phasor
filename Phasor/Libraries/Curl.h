@@ -3,7 +3,6 @@
 #include <sstream>
 #include <vector>
 #include <list>
-#include <memory>
 #include "../Common/MyException.h"
 #include "../../libcurl/curl/curl.h"
 

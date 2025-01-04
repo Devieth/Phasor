@@ -55,14 +55,10 @@ namespace halo {
 	// Called after the server has been notified of a player spawn
 	void __stdcall OnPlayerSpawnEnd(DWORD playerId, ident m_objectId);
 
-    // Called when an object is being destroyed
-    void __stdcall OnObjectDestroy(ident m_objid);
-
 	// Called when a weapon is created
 	void __stdcall OnObjectCreation(ident m_objectId);
 
-	bool __stdcall OnObjectCreationAttempt(s_player_structure* player,
-                                           objects::s_object_creation_disposition* creation_info);
+	bool __stdcall OnObjectCreationAttempt(objects::s_object_creation_disposition* creation_info);
 
 	// Called when a weapon is assigned to an object
 	DWORD __stdcall OnWeaponAssignment(DWORD playerId, ident owningObjectId,
@@ -75,7 +71,7 @@ namespace halo {
 	void OnClientUpdate(s_player& player);
 
 	// Called when someone chats in the server
-	void __stdcall OnChat(server::s_machine_info* machine, server::chat::s_chat_data* chat);
+	void __stdcall OnChat(server::chat::s_chat_data* chat);
 
 	// Called when a player attempts to enter a vehicle
 	bool __stdcall OnVehicleEntry(DWORD playerId);
@@ -84,7 +80,7 @@ namespace halo {
 	bool __stdcall OnVehicleEject(objects::s_halo_biped* m_playerObject, bool forceEjected);
 
 	// Called when a player dies
-	bool __stdcall OnPlayerDeath(DWORD killerId, DWORD victimId, DWORD mode);
+	void __stdcall OnPlayerDeath(DWORD killerId, DWORD victimId, DWORD mode);
 
 	// Called when a player gets a double kill, spree etc
 	void __stdcall OnKillMultiplier(DWORD playerId, DWORD multiplier);

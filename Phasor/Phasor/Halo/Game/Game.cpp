@@ -6,11 +6,10 @@
 #include "../Alias.h"
 #include "../../Globals.h"
 #include "../../../Common/MyString.h"
-#include "../../../Scripts/script-events.h"
+#include "../../../ScriptingEvents.h"
 #include "../tags.h"
 #include "../Server/Chat.h"
 #include "../Server/MapVote.h"
-#include "../Server/Lead.h"
 #include <vector>
 
 namespace halo { namespace game {
@@ -29,7 +28,7 @@ namespace halo { namespace game {
 
 	inline bool valid_index(DWORD playerIndex)
 	{
-		return playerIndex < 16;
+		return playerIndex >= 0 && playerIndex < 16;
 	}
 
 	// Find the player based on their memory id.
@@ -96,7 +95,6 @@ namespace halo { namespace game {
 		case 1: // just ended (in game scorecard is shown)
 			{
 				afk_detection::Disable();
-                server::lead::OnGameEnd();
 				g_GameLog->WriteLog(kGameEnd, L"The game has ended.");
 				*g_PrintStream << "The game is ending..." << endl;
 
@@ -117,7 +115,6 @@ namespace halo { namespace game {
 		objects::ClearManagedObjects();
 		afk_detection::Enable();
 		halo::BuildTagCache();
-        server::lead::OnGameStart();
 		
 		g_GameLog->WriteLog(kGameStart, "A new game has started on map %s", map);
 
@@ -161,7 +158,9 @@ namespace halo { namespace game {
 
 	DWORD __stdcall OnTeamSelection(DWORD cur_team, server::s_machine_info* machine)
 	{
-		return scripting::events::OnTeamDecision(cur_team);
+		DWORD new_team = cur_team;
+		scripting::events::OnTeamDecision(cur_team, new_team);
+		return new_team;
 	}
 
 	/*! \todo add checks when sv_teams_change or w/e is enabled */
@@ -199,40 +198,28 @@ namespace halo { namespace game {
 		scripting::events::OnPlayerSpawnEnd(*player, m_objectId);
 	}
 
-    // Called when an object is being destroyed
-    void __stdcall OnObjectDestroy(ident m_objid)
-    {
-        objects::OnObjectDestroy(m_objid);
-        server::lead::OnObjectDestroy(m_objid);
-    }
-
 	// Called when a weapon is created
 	void __stdcall OnObjectCreation(ident m_objectId)
 	{
-        server::lead::OnObjectCreation(m_objectId);
-		scripting::events::OnObjectCreation(m_objectId);        
+		scripting::events::OnObjectCreation(m_objectId);
 	}
 
-	bool __stdcall OnObjectCreationAttempt(s_player_structure* probably_not_a_player,
-                                           objects::s_object_creation_disposition* creation_info)
+	bool __stdcall OnObjectCreationAttempt(objects::s_object_creation_disposition* creation_info)
 	{
-        // note: this argument is most definitely wrong for every single call 
-        // that isn't creating a player. It probably isn't even a pointer
-        // most of the time. However, getPlayerFromAddress will validate
-        // it for us.
-        s_player* player = getPlayerFromAddress(probably_not_a_player);
+		/*! \todo make sure the player is correct */
+		halo::ident change_id;
+		bool allow;
 
-		bool allow = true;
-		boost::optional<halo::ident> changeId = scripting::events::OnObjectCreationAttempt(creation_info, player, allow);
+		scripting::events::e_ident_or_bool r = scripting::events::OnObjectCreationAttempt(creation_info, change_id, allow);
 
-		if (!changeId) return allow;
+		if (r == scripting::events::e_ident_or_bool::kBool) return allow;
 		else {
 			
-            halo::s_tag_entry* change_tag = LookupTag(*changeId);
+			halo::s_tag_entry* change_tag = LookupTag(change_id);
 			halo::s_tag_entry* default_tag = LookupTag(creation_info->map_id);
 
 			if (change_tag && default_tag && change_tag->tagType == default_tag->tagType) {
-                creation_info->map_id = *changeId;
+				creation_info->map_id = change_id;
 			}
 			return true;
 		}		
@@ -242,13 +229,13 @@ namespace halo { namespace game {
 		s_object_info* curWeapon, DWORD order)
 	{
 		halo::s_player* player = game::getPlayer(playerId);
-        ident weap_id = curWeapon->id;
+		ident weap_id = curWeapon->id, result_id;
 
-		boost::optional<halo::ident> changeId = 
-            scripting::events::OnWeaponAssignment(player, owningObjectId, order, weap_id);
+		bool b = scripting::events::OnWeaponAssignment(player, owningObjectId, order, weap_id,
+			result_id);
 
 		// can return 0xFFFFFFFF to not assign a weapon
-        if (changeId && (!changeId->valid() || LookupTag(*changeId))) return *changeId;
+		if (b && (!result_id.valid() || LookupTag(result_id))) return result_id;
 		else return weap_id;	
 	}
 
@@ -257,9 +244,9 @@ namespace halo { namespace game {
 	{
 		bool allow = true;
 		halo::s_player* player = game::getPlayer(playerId);
-        objects::s_halo_object* obj = (objects::s_halo_object*)
-            objects::GetObjectAddress(m_ObjId);
-		if (player && obj) {
+		if (player) {
+			objects::s_halo_object* obj = (objects::s_halo_object*)
+				objects::GetObjectAddress(m_ObjId);
 
 			allow = scripting::events::OnObjectInteraction(*player, m_ObjId, obj->map_id);		
 		}
@@ -274,16 +261,15 @@ namespace halo { namespace game {
 
 
 	// Called when someone chats in the server
-    void __stdcall OnChat(server::s_machine_info* machine, server::chat::s_chat_data* chat)
+	void __stdcall OnChat(server::chat::s_chat_data* chat)
 	{
 		using namespace server::chat;
 		static const wchar_t* typeValues[] = {L"GLOBAL", L"TEAM", L"VEHICLE"};
 		s_player* sender = getPlayer(chat->player);
 		if (!sender || chat->type < kChatAll || chat->type > kChatVehicle) return;
-        if (machine->playerNum != sender->mem->playerNum) return;
 
 		int length = wcslen(chat->msg);
-		if (length > 256) return;
+		if (length > 64) return;
 
 		std::wstring send_msg = chat->msg;
 		
@@ -325,12 +311,12 @@ namespace halo { namespace game {
 	}
 
 	// Called when a player dies
-	bool __stdcall OnPlayerDeath(DWORD killerId, DWORD victimId, DWORD mode)
+	void __stdcall OnPlayerDeath(DWORD killerId, DWORD victimId, DWORD mode)
 	{
 		s_player* victim = getPlayer(victimId);
 		s_player* killer = getPlayer(killerId);
 
-		if (!victim) return true;
+		if (!victim) return;
 
 		// log the death based on type
 		switch (mode)
@@ -379,7 +365,7 @@ namespace halo { namespace game {
 			} break;
 		}
 			
-		return scripting::events::OnPlayerKill(*victim, killer, mode);
+		scripting::events::OnPlayerKill(*victim, killer, mode);
 	}
 
 	// Called when a player gets a double kill, spree etc

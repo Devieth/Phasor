@@ -7,8 +7,7 @@
 #include "../Game/Game.h"
 #include "../../Globals.h"
 #include "../../Admin.h"
-#include "../../../Scripts/script-events.h"
-#include "../../../Scripts/scripting.hpp"
+#include "../../../ScriptingEvents.h"
 #include "Mapvote.h"
 #include "Packet.h"
 #include "Chat.h"
@@ -111,12 +110,12 @@ namespace halo { namespace server
 		// now let scripts change the player's name
 		std::string hash(data->hash, 32);
 		std::string name = NarrowString(data->name);
-		boost::optional<std::string> newName;
+		std::string new_name;
 
-		bool allow_name = scripting::events::OnNameRequest(hash, name, newName);
+		bool allow_name = scripting::events::OnNameRequest(hash, name, new_name);
 
-		if (newName) {
-			std::wstring wname = WidenString(*newName).substr(0, 11);
+		if (new_name.size()) {
+			std::wstring wname = WidenString(new_name).substr(0, 11);
 			wcscpy_s(data->name, 12, wname.c_str());
 		} else if (!allow_name) {
 			data->name[0] = L'\0';
@@ -143,7 +142,6 @@ namespace halo { namespace server
 	{
 		g_Timers.Process();
 		g_Thread.ProcessEvents();
-        scripting::checkEvents();
 	}
 
 	/*! \todo make this more efficient.. shouldn't need to GetPlayerFromAddress */
@@ -174,7 +172,7 @@ namespace halo { namespace server
 
 		char* map = loading_map->map;
 		current_map = map;
-		//char* gametype = loading_map->gametype;
+		char* gametype = loading_map->gametype;
 #ifdef PHASOR_PC		
 		maploader::OnMapLoad(map);
 		if (!maploader::GetBaseMapName(map, (const char**)&map)) {
@@ -245,17 +243,9 @@ namespace halo { namespace server
 	// Called once Halo has received the hash-checking response from gamespy
 	void __stdcall OnHashValidation(s_hash_validation* info, const char* status)
 	{
-        int script_status = info->status; // 1 = valid, 2 = invalid
-
-        // We still want to reject valid hashes with invalid challenges
-        // If we get such a case, someone is trying to steal a hash.
-        if (!strcmp(status, "Invalid authentication")) {
-            script_status = 3;
-        } else if (allow_invalid_hash) {
-            info->status = 1;
-        }
-
-        scripting::events::OnHashValidation(info->hash, script_status);
+		// We still want to reject valid hashes with invalid challenges
+		// If we get such a case, someone is trying to steal a hash.
+		if (allow_invalid_hash && strcmp(status, "Invalid authentication") != 0) info->status = 1;
 
 		if (info->status == 1) {
 			PhasorMachine* machine = FindMachineById(info->machineId);
@@ -349,9 +339,7 @@ namespace halo { namespace server
 
 				if (!can_execute) *(exec_player->console_stream) << L" ** Access denied **" << endl;
 			}			
-        } else {
-            *g_RconLog << "Server executing: " << command << endl;
-        }
+		}
 
 		e_command_result result = e_command_result::kProcessed;
 		if (can_execute) {
@@ -425,12 +413,9 @@ namespace halo { namespace server
 	void NotifyServerOfTeamChange(const halo::s_player& player)
 	{
 		// build the packet that notifies the server of the team change
-		BYTE d[4] = {(BYTE)player.memory_id, (BYTE)player.mem->team, 0x18, 0};
-
+		BYTE d[4] = {(BYTE)player.memory_id, (BYTE)player.mem->team, 0x18, 0};
 		// Gotta pass a pointer to the data
-		DWORD d_ptr = (DWORD)&d;
-		BYTE buffer[8192];
-		DWORD retval = server::BuildPacket(buffer, 0, 0x1A, 0, (LPBYTE)&d_ptr, 0, 1, 0);
+		DWORD d_ptr = (DWORD)&d;		BYTE buffer[8192];		DWORD retval = server::BuildPacket(buffer, 0, 0x1A, 0, (LPBYTE)&d_ptr, 0, 1, 0);
 		server::AddPacketToGlobalQueue(buffer, retval, 1, 1, 0, 1, 3);
 	}
 

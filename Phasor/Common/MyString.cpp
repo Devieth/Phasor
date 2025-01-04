@@ -128,6 +128,7 @@ double _StringToNumber<double>(const char* start, char** end) { return strtod(st
 // 
 // Tokenization
 // ------------------------------------------------------------------------
+
 template <>
 const std::string ArgsSearchString<std::string>()
 {

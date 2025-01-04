@@ -6,7 +6,6 @@
 #include "Server/MapLoader.h"
 #include "Game/Objects.h"
 #include "Game/Damage.h"
-#include "Server/Lead.h"
 
 using namespace halo;
 
@@ -287,22 +286,13 @@ DWORD teamsel_ret = 0, selection = 0;
 // Codecave for team selection
 __declspec(naked) void OnTeamSelection_CC()
 {
-    __asm
-    {
-        pop teamsel_ret
+	__asm
+	{
+		pop teamsel_ret
 
-        CMP BYTE PTR DS: [EBX+0x1E], 0xFF
-        jne skip_halo_team_assign
-        // Player doesn't have previous team, find one.
-        // ecx can be modified safely (see FUNC_TEAMSELECT)
-        mov ecx, FUNC_TEAMSELECT
-        call ecx
-        jmp phasor_team_assign
-skip_halo_team_assign:
-        // use previous team
-        mov al, byte ptr ds: [EBX+0x1E]
-
-phasor_team_assign:
+		// ecx can be modified safely (see FUNC_TEAMSELECT)
+		mov ecx, FUNC_TEAMSELECT
+		call ecx
 
 		pushad
 
@@ -462,8 +452,6 @@ __declspec(naked) void OnObjectCreationAttempt_CC()
 
 		mov eax, [ESP + 0x24]
 		push eax // creation description
-        mov eax, [ESP + 0x38]
-        push eax // player struct (if any)
 		call game::OnObjectCreationAttempt
 
 		cmp al, 1
@@ -491,13 +479,14 @@ __declspec(naked) void OnObjectDestroy_CC()
 
 		pushad
 
-		push edx
-		call game::OnObjectDestroy
+		push eax
+		call objects::OnObjectDestroy
 
 		popad
 
-        MOV ECX, EDX
-        AND ECX, 0x0000FFFF
+		MOV EDX,DWORD PTR DS:[ECX+0x34]
+		PUSH EDI
+		MOV EDI,EAX
 
 		push objdestroy_ret
 		ret
@@ -597,7 +586,6 @@ __declspec(naked) void OnChat_CC()
 		#endif
 		
 		push eax
-        push esi // machine entry
 		call game::OnChat
 
 		popad
@@ -775,7 +763,7 @@ ALLOW_VEHICLE_ENTRY:
 }
 
 DWORD ondeath_ret = 0;
-bool show_kill_msg = true;
+
 // Codecave for handling player deaths
 __declspec(naked) void OnDeath_CC()
 {
@@ -796,10 +784,8 @@ __declspec(naked) void OnDeath_CC()
 		push eax // victim
 		push ecx // killer
 		call game::OnPlayerDeath
-		mov show_kill_msg, al
-		popad
 
-		mov bl, show_kill_msg
+		popad
 
 		PUSH EBP
 		MOV EBP,DWORD PTR SS:[ESP+0x20]
@@ -1160,107 +1146,6 @@ __declspec(naked) void OnMachineInfoFix_CC()
 	}
 }
 
-DWORD projmove_ret;
-__declspec(naked) void OnProjectileMove_CC()
-{
-    __asm 
-    {
-        pop projmove_ret
-
-        pushad
-
-        mov eax, [ESP + 0x24]
-        push eax
-        call halo::server::lead::OnProjectileMove
-
-        popad
-
-        PUSH EBP
-        MOV EBP, ESP
-        AND ESP, 0xFFFFFFF8
-
-        push projmove_ret
-        ret
-    }
-}
-
-__declspec(naked) void OnProjectileMoveRet_CC()
-{
-    __asm
-    {
-        add esp, 4
-
-        pushad
-        call halo::server::lead::OnProjectileMoveRet
-        popad
-
-        mov esp, ebp
-        pop ebp
-        ret
-    }
-}
-
-DWORD raycast_ret;
-__declspec(naked) void OnRayCast_CC()
-{
-    __asm
-    {
-        pop raycast_ret
-
-        // todo: stop using pushad/popad at some point
-        pushad
-
-        // +0x20 = return address from RayCast
-        
-        mov eax, [esp + 0x34]
-        push eax // s_intersection_output
-        mov eax, [esp + 0x34]
-        push eax // ignore object
-        mov eax, [esp + 0x34]
-        push eax // dir
-        mov eax, [esp + 0x34]
-        push eax // pos
-        mov eax, [esp + 0x34]
-        push eax // flags
-        call halo::server::lead::OnRayCast
-
-        popad
-
-        sub esp, 0x438
-        push raycast_ret
-        ret
-    }
-}
-
-_declspec(naked) void OnRayCastRet_CC()
-{
-    __asm
-    {
-        add esp, 4
-        pushad
-        call halo::server::lead::OnRayCastRet
-        popad
-
-        ADD ESP, 0x438
-
-        ret
-    }
-}
-
-__declspec(naked) void OnTickSleep_CC()
-{
-    __asm
-    {
-        mov ebx, Sleep
-
-        pushad
-        call halo::server::lead::OnTick
-        popad
-
-        ret
-    }
-}
-
 namespace halo
 {
 	using namespace Common;
@@ -1345,7 +1230,7 @@ namespace halo
 		// Codecave called when a weapon is created
 		CreateCodeCave(CC_OBJECTCREATION, 5, OnObjectCreation_CC);
 		CreateCodeCave(CC_OBJECTCREATIONATTEMPT, 6, OnObjectCreationAttempt_CC);
-		CreateCodeCave(CC_OBJECTDESTROY, 8, OnObjectDestroy_CC);
+		CreateCodeCave(CC_OBJECTDESTROY, 6, OnObjectDestroy_CC);
 
 		// Codecave for handling weapon assignment to spawning players
 		CreateCodeCave(CC_WEAPONASSIGN, 6, OnWeaponAssignment_CC);
@@ -1413,16 +1298,7 @@ namespace halo
 		//BYTE curCmp[] = {0x90, 0x90, 0x90, 0x90, 0x90, 0x90};
 		//WriteBytes(0x00512479 , &curCmp, sizeof(curCmp));
 
-        // nolead
-        CreateCodeCave(FUNC_INTERSECT, 6, OnRayCast_CC);
-        CreateCodeCave(CC_INTERSECT_RET1, 7, OnRayCastRet_CC);
-        CreateCodeCave(CC_INTERSECT_RET2, 7, OnRayCastRet_CC);
-        CreateCodeCave(CC_INTERSECT_RET3, 7, OnRayCastRet_CC);
-        CreateCodeCave(CC_PROJMOVE, 6, OnProjectileMove_CC);
-        CreateCodeCave(CC_PROJMOVE_RET1, 4, OnProjectileMoveRet_CC);
-        CreateCodeCave(CC_PROJMOVE_RET2, 4, OnProjectileMoveRet_CC);
-        CreateCodeCave(CC_ONTICKSLEEP, 6, OnTickSleep_CC);
-
+		
 		// I want to remove haloded's seh chain so that I can get extra exception
 		// information (passed to the unhandled exception filter)
 		#pragma pack(push, 1)

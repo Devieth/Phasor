@@ -107,7 +107,7 @@ COutStream & COutStream::operator<<(DWORD number)
 COutStream & COutStream::operator<<(double number)
 {
 	wchar_t str[64];
-	swprintf_s(str, NELEMS(str), L"%.4f", number);
+	swprintf_s(str, NELEMS(str), L"%.4d", number);
 	return *this << str;
 }
 
